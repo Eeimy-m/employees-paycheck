@@ -11,12 +11,12 @@ public class Employee {
 
     private List<Paycheck> paychecks = new ArrayList<>();
 
-    public Employee(String id, String name, String jobTitle, double salary, LocalDate dateOdEmployment) {
+    public Employee(String id, String name, String jobTitle, double salary) {
         this.id = id;
         this.name = name;
         this.jobTitle = jobTitle;
         this.salary = salary;
-        this.dateOdEmployment = dateOdEmployment;
+        this.dateOdEmployment = LocalDate.now();
     }
 
     public double getYearsOfService() {
@@ -81,5 +81,9 @@ public class Employee {
 
     public List<Paycheck> getPaychecks() {
         return paychecks;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 }
