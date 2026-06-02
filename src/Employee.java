@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-public class Employee {
+public class Employee implements Entity<String>{
     private String id;
     private String name;
     private String jobTitle;
@@ -59,7 +59,8 @@ public class Employee {
                 '}';
     }
 
-    public String getId() {
+    @Override
+    public String getKey() {
         return id;
     }
 
