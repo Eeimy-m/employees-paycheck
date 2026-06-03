@@ -2,9 +2,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
 
 public class EmployeeRepository {
     public void save(Employee employee) {
@@ -16,6 +13,7 @@ public class EmployeeRepository {
             statement.setString(2, employee.getName());
             statement.setString(3, employee.getJobTitle());
             statement.setDouble(4, employee.getSalary());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

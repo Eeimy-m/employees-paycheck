@@ -2,12 +2,14 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Paycheck {
+    private static int id;
     private LocalDate payDay;
     private double salary;
 
     public Paycheck(LocalDate payDay, double salary) {
         this.payDay = payDay;
         this.salary = salary;
+        id++;
     }
 
     @Override
@@ -28,5 +30,9 @@ public class Paycheck {
 
     public double getSalary() {
         return salary;
+    }
+
+    public int getId() {
+        return id;
     }
 }
