@@ -49,14 +49,8 @@ public class Employee implements Entity<String>{
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", salary=" + salary +
-                ", dateOdEmployment=" + dateOdEmployment +
-                ", paychecks=" + paychecks +
-                '}';
+        return String.format("| id: %s | Name: %s | Job title: %s | Salary: %.2f | Date of employment: %s"
+                , id, name, jobTitle, salary, dateOdEmployment);
     }
 
     @Override
