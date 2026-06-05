@@ -1,9 +1,10 @@
 import java.sql.*;
 import java.util.Optional;
 
-public class EmployeeRepository {
+public class EmployeeRepository implements Repository<Employee>{
+    @Override
     public void save(Employee employee) {
-        String sql = "INSERT INTO employee VALUES (? ? ? ? ?)";
+        String sql = "INSERT INTO employee VALUES (?,?,?,?,?)";
 
         try (final Connection connection = DriverManager.getConnection("jdbc:sqlite:database.db");
             final PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -17,6 +18,7 @@ public class EmployeeRepository {
         }
     }
 
+    @Override
     public void update(Employee employee) {
         String sql = "UPDATE employee SET name = ?, jobTitle = ?, salary = ? WHERE id = ?";
 
@@ -32,6 +34,7 @@ public class EmployeeRepository {
         }
     }
 
+    @Override
     public void delete(Employee employee) {
         String sql = "DELETE FROM employee WHERE id = ?";
 
@@ -44,6 +47,7 @@ public class EmployeeRepository {
         }
     }
 
+    @Override
     public Optional<Employee> findOne(Employee employee) {
         String sql = "SELECT FROM employee WHERE id = ?";
 
