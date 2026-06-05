@@ -1,7 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Optional;
 
 public class EmployeeRepository {
     public void save(Employee employee) {
@@ -44,5 +42,25 @@ public class EmployeeRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Optional<Employee> findOne(Employee employee) {
+        String sql = "SELECT FROM employee WHERE id = ?";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+            final PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, employee.getKey());
+            final ResultSet rs = statement.executeQuery();
+            if (rs.next())
+                return Optional.of(new Employee
+                        (rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("jobTitle"),
+                        rs.getDouble("salary")
+                        ));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Optional.empty();
     }
 }

@@ -1,5 +1,4 @@
 import java.sql.*;
-import java.util.Collection;
 
 public class PaycheckRepository {
     public void save(Paycheck paycheck) {
