@@ -24,7 +24,7 @@ public class Company {
 
     public void pay(String id) {
         if(!employees.containsKey(id)) throw new IllegalArgumentException("Employee with id " + id + " does not exist");
-        employees.get(id).addPaycheck(LocalDate.now());
+//        employees.get(id).addPaycheck(LocalDate.now());
     }
 
     public void increaseSalary(String id, double salary) {

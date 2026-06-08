@@ -1,16 +1,17 @@
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
         Company company = new Company();
-        Repository<Employee> employeesRepo = new EmployeeRepository();
+        Repository<Employee, String> employeesRepo = new EmployeeRepository();
 
-        Employee eimy = new Employee("SC3050742", "Elisa Eimy Miura", "Back end dev", 5_000);
+        String id = "SC3050742";
+        Employee eimy = new Employee(id, "Elisa Eimy Miura", "Back end dev", 5_000);
 
         for(int i = 0; i < 5; i++) {
             int count = i + 1;
             Employee employee = new Employee("SC" + count, "employee" + count, "JobTitle" + count, 1_000);
         }
 
-        employeesRepo.save(eimy);
-        employeesRepo.findOne(eimy).ifPresentOrElse(System.out::println, () -> System.out.println("Employee not found"));
+//        employeesRepo.save(eimy);
+        employeesRepo.findOne(id).ifPresentOrElse(System.out::println, () -> System.out.println("Employee not found"));
     }
 }

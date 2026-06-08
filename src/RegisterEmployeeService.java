@@ -1,7 +1,7 @@
 public class RegisterEmployeeService {
     private EmployeeRepository empRepo;
 
-    public RegisterEmployeeService() {
-        this.empRepo = new EmployeeRepository();
+    public RegisterEmployeeService(EmployeeRepository empRepo) {
+        this.empRepo = empRepo;
     }
 }

@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-public class Employee implements Entity<String>{
+public class Employee{
     private String id;
     private String name;
     private String jobTitle;
@@ -12,19 +12,23 @@ public class Employee implements Entity<String>{
     private List<Paycheck> paychecks = new ArrayList<>();
 
     public Employee(String id, String name, String jobTitle, double salary) {
+        this(id, name, jobTitle, salary, LocalDate.now());
+    }
+
+    public Employee(String id, String name, String jobTitle, double salary, LocalDate dateOdEmployment) {
         this.id = id;
         this.name = name;
         this.jobTitle = jobTitle;
         this.salary = salary;
-        this.dateOdEmployment = LocalDate.now();
+        this.dateOdEmployment = dateOdEmployment;
     }
 
     public double getYearsOfService() {
         return (double) Period.between(dateOdEmployment, LocalDate.now()).toTotalMonths()/12;
     }
 
-    public void addPaycheck(LocalDate payDay) {
-        paychecks.add(new Paycheck(payDay, salary));
+    public void addPaycheck(Paycheck paycheck) {
+        paychecks.add(paycheck);
     }
 
     public void removePaycheck(Paycheck paycheck) {
@@ -53,8 +57,7 @@ public class Employee implements Entity<String>{
                 , id, name, jobTitle, salary, dateOdEmployment);
     }
 
-    @Override
-    public String getKey() {
+    public String getId() {
         return id;
     }
 
